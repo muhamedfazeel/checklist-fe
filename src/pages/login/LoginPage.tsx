@@ -27,17 +27,19 @@ const LoginPage = () => {
 		<>
 			{!isUserLoggedIn ? (
 				<div className='login-page'>
+					<div className='login-bg'></div>
 					<div className='btn-container'>
 						<button className='login-btn'>
 							<GoogleLogin
 								onSuccess={(response) => {
-									response?.credential && console.log(response.credential);
+									if (response?.credential) {
+										login(response.credential);
+									}
 								}}
 								onError={() => {
 									console.log('Login Failed');
 								}}
 								width={'100%'}
-								useOneTap
 							/>
 						</button>
 					</div>
